@@ -1,0 +1,4 @@
+addi x6,x7,10;
+addi x6,x7,10;
+addi x6,x7,10;addi x6,x7,10;addi x6,x7,10;
+beq x0,x2,-1;

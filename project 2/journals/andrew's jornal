@@ -1,0 +1,43 @@
+Andrew Nady 
+900184042
+======================
+
+1/12: 
+        1) we begin our project setup and enviroment 
+        2) we decided to make an educational plateform which is very challenging 
+        3) we created a reactjs project
+        4)make a way to write assembly code in a text input and then parse it to find which instruction is this
+        5)go over every instruction by clicking next 
+        6)assign to every instrcution the issued and the exexuted and writing back without taking in consideration the RAW dependencies
+        7)checking if the RS is busy or not before issuing a new instruction
+
+2/12:
+	1)we made the Raw dependency 
+	
+	
+4/12:
+	1)we add some other instructions
+
+5/12:
+
+	1)beq instruction and trying to make it jump 
+
+6/12: 
+	1)flushing the instructions 
+	2) removing the flushed instructions from the stations
+	3) remove the register from Qi
+
+8/12:
+ 	1)we begin in jalr
+	2)we made it jump as beq bas without conditions
+
+9,10 /12: 
+	1) fix some bugs 
+	2)discovered that we did the PC wrong, solved it 
+	3)discovered that we handled the Raw wrong, solved it
+	4)added the ret to return back 
+	5)tested some test case (including loop)
+	6)getting the miss ration and total time and IPC
+
+
+

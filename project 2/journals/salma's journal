@@ -1,0 +1,29 @@
+salma soliman
+900182325
+=============
+
+Thursday 3/12: 1) Handling RAW dependencies.
+               2) Creating the table of registers
+
+Friday 4/12 : 1) supporting NEG instruction.
+              2) suporting DIV instruction.
+              3) correcting the PC to be (pc+2) instead of 4.
+              4) Handling the ADDI immediate.
+              5) adding the datamemory.
+
+
+Wednesday 8/12 : 1) Working on JALR.
+
+Thursday 9-10/12 : 
+              1) Debugging issues with addi and add.
+              2) debugging issues with ret
+              3) deugging issues with DIV.
+              4) adding the IPC.
+              5) Writing the report file and read me file.
+              6) Handling issues with RAW again.
+              7) Handling BEQ format.
+
+** there are days we worked in but we can not remeber exactly what we have done in the code as we did not have the time to fill in the journal immediatly. 
+
+
+

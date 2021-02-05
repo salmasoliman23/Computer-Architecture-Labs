@@ -1,0 +1,43 @@
+    `timescale 1ns / 1ps
+    
+    
+    module datamem_tb( );
+reg MemRead;
+reg MemWrite;
+reg clk;
+reg[9:0] addr;
+reg [31:0] data_in;
+wire [127:0] MsDataOut;
+wire Msready;    
+        
+DataMem chace ( clk,  MemRead, MemWrite, addr,  data_in, MsDataOut, Msready);
+ initial 
+  begin 
+  clk = 0;
+  forever #50 clk = ~clk; 
+  end
+  initial
+   begin 
+  // lw mn mem [0] 
+ 
+   MemRead = 1  ;
+   MemWrite = 0 ;
+    addr = 0 ;
+    
+    #100
+   // sw f mem[3] = 13
+ 
+                MemRead = 0  ;
+               MemWrite = 1 ;
+               addr = 3 ;
+               data_in = 32'd13  ;
+               #100
+                 MemRead = 1  ;
+                MemWrite = 0 ;
+                 addr = 0 ;
+     
+  
+     end 
+        
+    endmodule
+

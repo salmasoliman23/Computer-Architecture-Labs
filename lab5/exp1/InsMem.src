@@ -1,0 +1,12 @@
+module InstMem (input [5:0] addr, output [31:0] data_out);
+reg[31:0] mem [0:63];
+assign data_out = mem[addr];
+initial 
+begin
+mem[0]=32'd17;
+mem[1]=32'd9;
+mem[2]=32'd25;
+mem[3]=32'd55;
+mem[4]=32'd40;
+end
+endmodule

@@ -1,0 +1,42 @@
+`timescale 1ns / 1ps
+
+module registertesting() ;
+
+reg clk;
+reg S;
+reg [31:0] in;
+reg rst;
+wire [31:0] Q ;
+OneReg  regis( clk, S, in, rst,  Q );
+initial 
+begin
+clk = 0;
+ forever #10
+clk=~clk;
+end
+
+initial
+ begin 
+
+ S=0;
+ in=0;
+ rst=0;
+#100
+  S=1;
+  in=1;
+ 
+ #100
+ S=0;
+ in=0;
+ #100
+ S=1;
+ in=0;
+ #100
+ rst=1;
+ 
+
+ 
+end
+
+endmodule
+

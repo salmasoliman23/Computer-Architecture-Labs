@@ -1,0 +1,74 @@
+`timescale 1ns / 1ps
+module Full_dataPath( input clk, input rst );
+wire [31:0] adder1,adder2,PCmux,PCout;
+wire cout1_ripple1,cout1_ripple2;
+wire [31:0]ints_out;
+wire [31:0]readdata1, readdata2 ;
+wire  [31:0] gen_out; //should be reg || wire
+wire branch;
+ wire  memread;
+  wire  memtoreg;
+ wire [1:0]aluop;
+  wire memwrite; 
+   wire  alusrc;
+    wire regwrite; 
+    wire [3:0]aluS;
+    wire [31:0]outmux_input_alu;
+    wire [31:0]ALU_result;
+    wire zero;
+    wire [31:0] dataMem_out;
+    wire [31:0] writingData;
+    wire [31:0] shiftout;
+    wire S;
+//instantiate 32bitreg PCin PCout
+OneReg  pc( clk,1, PCmux, rst,  PCout );
+ripple_carry  ripplecar0(PCout,
+32'd4,
+0,
+adder1,
+cout1_ripple1
+);
+//adder tany
+ripple_carry  ripplecar1(PCout,
+shiftout,
+0,
+adder2,
+cout1_ripple2
+);
+
+//mux
+ThirtytwoMUX  mux3(adder1,adder2,branch&zero ,PCmux);
+//register (PCmux, PCin)  //reload the PC
+
+//instmem
+InstMem instmem(PCout[7:2],ints_out);  
+//control unit 
+Control_unit  controlunit(ints_out[6:2], branch,
+   memread, memtoreg,
+aluop, memwrite,  alusrc, regwrite );
+//alu_control
+ALU_Control   aluControl(aluop,  ints_out[14:12],ints_out[30] ,aluS);
+//registerfile
+RegisterFile regfile( clk, rst, 
+ints_out[19:15], ints_out[24:20], ints_out[11:7],
+ writingData,
+ regwrite,
+ readdata1, readdata2  );
+//immGenerator
+immediate_generator   immgen( gen_out, ints_out );
+//shifting left
+ shiftLeft sh(gen_out ,shiftout);
+//mux 
+ ThirtytwoMUX mux (readdata2,gen_out,alusrc ,outmux_input_alu);
+ //ALU
+ ALU alu(
+ readdata1, outmux_input_alu,
+ aluS,
+ ALU_result,  zero );
+ //dataMem
+ DataMem  datamem( clk, memread, memwrite,
+  ALU_result[7:2] , readdata2,  dataMem_out);
+//mux after the datamem
+ThirtytwoMUX mux_writing (ALU_result,dataMem_out,memtoreg ,writingData);
+endmodule
+

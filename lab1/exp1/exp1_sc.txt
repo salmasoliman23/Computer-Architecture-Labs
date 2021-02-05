@@ -1,0 +1,4 @@
+module inverter(output B);
+Wire A=0;
+assign B = ~A;
+endmodule 

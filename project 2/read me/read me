@@ -1,0 +1,20 @@
+** Almost the simulator is working correctly with some minor exceptions.
+Bugs:
+====
+1) flushing after ret is not that efficient. when returning , the instruction that will be written in the same cycle won't have time to be flushed from the
+reservation station. and if not excuted, it won't be ever. it should be handled effciently.
+2) when we find writing back at the same place we are in, we stop the clock. with ret , this is not working correctly.
+
+we actually did not have enough time to handle them.
+
+** if you want to run the program directly , open this link :
+
+https://andrew-hany.github.io/tomasulo_algorithm_simulation//
+
+** if you want to run it through terminal , write these instructions: 
+* make sure you have downloaded nodeJS(npm)
+1)cd repo_name
+2) npm i
+3)npm start
+
+** make sure after each test case to reload the page.

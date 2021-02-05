@@ -1,0 +1,17 @@
+`timescale 1ns / 1ps
+
+
+
+module shift_left_tb();
+reg [31:0]A=0;
+wire[31:0] C;
+shiftLeft s( A, C);
+initial 
+begin
+A[31:0]=32'd2;
+#100
+A[31:0]=32'd10;
+end 
+
+endmodule
+

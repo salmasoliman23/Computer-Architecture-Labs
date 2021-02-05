@@ -1,0 +1,41 @@
+`timescale 1ns / 1ps
+module datacache_tb( );
+
+reg clk;
+reg update;
+reg fill;
+reg [1:0]wordoffset;
+reg [4:0]index;
+reg [31:0]data_in;
+wire [31:0]data_out;
+reg [127:0]MsDataIn;
+
+DataCache ch( clk, update, fill,
+               wordoffset[1:0], index,
+               data_in, data_out, MsDataIn );
+               
+      initial 
+       begin 
+        clk = 0;
+        forever #50 clk = ~clk; 
+         end
+         
+      initial
+       begin
+       update  = 1;
+       fill = 0;
+       wordoffset = 0;
+       index = 1;
+       data_in = 12;
+       #100
+        update  = 0;
+             fill = 1;
+             wordoffset = 0;
+             index = 1;
+             MsDataIn = {12,13,14,15};
+             end
+                                 
+               
+               
+endmodule
+

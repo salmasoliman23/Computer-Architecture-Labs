@@ -1,0 +1,19 @@
+`timescale 1ns / 1ps
+
+
+module immediate_tb();
+wire [31:0] gen_out;
+ reg [31:0] inst;
+immediate_generator  m( gen_out,  inst );
+initial
+begin
+
+inst=32'h4D62A303;
+#100
+inst=32'hDCA7AF23;
+#100
+ inst=32'h18E18F63;
+ 
+end
+endmodule
+

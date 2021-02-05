@@ -1,0 +1,22 @@
+module shiftReg (input CLK, rst, shift, load, [n-1:0] D, nbit,output reg [n-1:0] Q);
+
+
+genvar i;  
+generate 
+for (i=0;i<=31;i=i+1)
+begin
+    onebitReg mod1 (   in[i],  S, clk,  rst,   Q[i]);
+    end 
+   endgenerate 
+
+
+always @(posedge CLK)
+begin
+if (rst)
+Q <= 0;
+else
+ if (load | (load==1 && shift==1)) 
+Q <= D;
+else if (shift && load==0)
+Q <= { Q[n-2:0], nbit };                 //nbit = the number of shifting operation
+endendmodule
